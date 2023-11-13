@@ -121,7 +121,7 @@ export const token = (mode) => ({
 });
 
 //Mui theme setting:
-export const ThemeSetting = (mode) => {
+export const themeSetting = (mode) => {
   const colors = token(mode);
   return {
     palette: {
@@ -179,20 +179,22 @@ export const ThemeSetting = (mode) => {
   };
 };
 
-//Context for color mode:
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+// context for color mode
+export const ColorModeContext = createContext({
+  toggleColorMode: () => {},
+});
 
 export const useMode = () => {
-  const [mode, setmode] = useState("dark");
+  const [mode, setMode] = useState("dark");
 
-  const colorMode = useMemo(() => {
+  const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
-        setmode((prev) => (prev === "light" ? "dark" : "light")),
-    });
-  }, []);
+        setMode((prev) => (prev === "light" ? "dark" : "light")),
+    }),
+    []
+  );
 
-  const theme = useMemo(() => createTheme(ThemeSetting(mode)), [mode]);
-
+  const theme = useMemo(() => createTheme(themeSetting(mode)), [mode]);
   return [theme, colorMode];
 };
