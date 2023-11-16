@@ -5,16 +5,16 @@ import { Route, Routes } from "react-router-dom";
 import TopBar from "./screen/global/TopBar";
 import SideBar from "./screen/global/SideBar";
 import Dashboard from "./screen/dashboard";
-// import Team from "./screen/team";
-// import Invoice from "./screen/invoice";
-// import Contacts from "./screen/contacts";
-// import Bar from "./screen/bar";
-// import Form from "./screen/form";
-// import Line from "./screen/line";
-// import Pie from "./screen/pie";
-// import FAQ from "./screen/faq";
-// import Geography from "./screen/geography";
-// import Calender from "./screen/calender";
+import Team from "./screen/team/Team";
+import Invoice from "./screen/invoice/invoice";
+import Contacts from "./screen/contacts/Contacts";
+import Bar from "./screen/bar/Bar";
+import Form from "./screen/form/Form";
+import Line from "./screen/line/Line";
+import Pie from "./screen/pie/Pie";
+import FAQ from "./screen/faq/FAQ";
+import Geography from "./screen/geography/geography";
+import Calender from "./screen/calender/Calender";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -29,7 +29,7 @@ function App() {
               <TopBar />
               <Routes>
                 <Route path="/" element={<Dashboard />}></Route>
-                {/* <Route path="/team" element={<Team />}></Route>
+                <Route path="/team" element={<Team />}></Route>
                 <Route path="/contacts" element={<Contacts />}></Route>
                 <Route path="/invoice" element={<Invoice />}></Route>
                 <Route path="/bar" element={<Bar />}></Route>
@@ -38,7 +38,7 @@ function App() {
                 <Route path="/pie" element={<Pie />}></Route>
                 <Route path="/faq" element={<FAQ />}></Route>
                 <Route path="/geography" element={<Geography />}></Route>
-                <Route path="/calender" element={<Calender />}></Route> */}
+                <Route path="/calender" element={<Calender />}></Route>
               </Routes>
             </main>
           </div>

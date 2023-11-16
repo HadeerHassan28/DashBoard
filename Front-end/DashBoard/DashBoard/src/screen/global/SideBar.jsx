@@ -22,6 +22,7 @@ const SideBar = () => {
   const [isCollapsed, setisCollapsed] = useState(true);
   const [selected, setselected] = useState("Dashboard");
 
+  // eslint-disable-next-line react/prop-types
   const Item = ({ title, to, icon, selected, setselected }) => {
     const theme = useTheme();
     const colors = token(theme.palette.mode);
@@ -32,8 +33,9 @@ const SideBar = () => {
         onClick={() => setselected(title)}
         icon={icon}
       >
-        <Typography>{title}</Typography>
-        <Link to={to} />
+        <Link to={to}>
+          <Typography>{title}</Typography>
+        </Link>
       </MenuItem>
     );
   };
@@ -43,14 +45,25 @@ const SideBar = () => {
         "& .ps-sidebar-container": {
           backgroundColor: `${colors.primary[400]} !important`,
         },
-        "& .ps-menu-button": { backgroundColor: "transparent !important" },
         "& .ps-sidebar-container-test-id": {
           padding: "5px 35px 5px 20px !important",
+        },
+        "& .ps-menu-button": {
+          backgroundColor: "transparent !important",
         },
         "& .ps-menu-button:hover": {
           color: "#868dfb !important",
         },
-        "& .pro-menu-item.active": {
+        "& .ps-menu-button:active": {
+          color: "#6870fa !important",
+        },
+        "& .MuiTypography-root": {
+          color: `${colors.gray[100]}`,
+        },
+        "& .MuiTypography-root:hover": {
+          color: "#868dfb !important",
+        },
+        "& .MuiTypography-root:active": {
           color: "#6870fa !important",
         },
       }}
@@ -120,6 +133,13 @@ const SideBar = () => {
               selected={selected}
               setselected={setselected}
             />
+            <Typography
+              variant="h6"
+              color={colors.gray[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Data
+            </Typography>
             {/* Mange Team */}
             <Item
               title="Mange Team"
@@ -135,8 +155,16 @@ const SideBar = () => {
               selected={selected}
               setselected={setselected}
             />
+
+            <Typography
+              variant="h6"
+              color={colors.gray[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Pages
+            </Typography>
             <Item
-              title="Invoice"
+              title="Invoice Balanves"
               to="/invoice"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -163,6 +191,13 @@ const SideBar = () => {
               selected={selected}
               setselected={setselected}
             />
+            <Typography
+              variant="h6"
+              color={colors.gray[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Charts
+            </Typography>
             <Item
               title="Bar Chart"
               to="/bar"
