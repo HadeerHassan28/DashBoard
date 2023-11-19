@@ -3,8 +3,9 @@ import { Box, TextField, Button, useMediaQuery } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Header from "../../component/Header";
+
 const Form = () => {
-  const isNonMobile = useMediaQuery("min-width:600px");
+  const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const initialValues = {
     firstName: "",
@@ -46,8 +47,10 @@ const Form = () => {
         <Box
           display="grid"
           gap="30px"
-          gridTemplateColumns="repeat(4,minmax(0,1fr))"
-          sx={{ "& > div": { gridColumn: isNonMobile ? undefined : "span 4" } }}
+          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+          }}
         >
           {/* Fisrt name */}
           <TextField
@@ -61,7 +64,7 @@ const Form = () => {
             name="firstName"
             error={!!formik.touched.firstName && !!formik.errors.firstName}
             helperText={formik.touched.firstName && formik.errors.firstName}
-            sx={{ gridAutoColumns: "auto" }}
+            sx={{ gridColumn: "span 2" }}
           />
           {/* Last name */}
           <TextField
@@ -77,6 +80,68 @@ const Form = () => {
             helperText={formik.touched.lastName && formik.errors.lastName}
             sx={{ gridColumn: "span 2" }}
           />
+          {/* email */}
+          <TextField
+            fullWidth
+            variant="filled"
+            type="email"
+            label="Email"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            name="email"
+            error={!!formik.touched.email && !!formik.errors.email}
+            helperText={formik.touched.email && formik.errors.email}
+            sx={{ gridColumn: "span 4" }}
+          />
+          {/* contact */}
+          <TextField
+            fullWidth
+            variant="filled"
+            type="tel"
+            label="Contact Number"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.contact}
+            name="contact"
+            error={!!formik.touched.contact && !!formik.errors.contact}
+            helperText={formik.touched.contact && formik.errors.contact}
+            sx={{ gridColumn: "span 4" }}
+          />
+          {/* address */}
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Address 1"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.address1}
+            name="address1"
+            error={!!formik.touched.address1 && !!formik.errors.address1}
+            helperText={formik.touched.address1 && formik.errors.address1}
+            sx={{ gridColumn: "span 4" }}
+          />
+          {/* address */}
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Address 2"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.address2}
+            name="address2"
+            error={!!formik.touched.address2 && !!formik.errors.address2}
+            helperText={formik.touched.address2 && formik.errors.address2}
+            sx={{ gridColumn: "span 4" }}
+          />
+        </Box>
+        {/* Button */}
+        <Box display="flex" justifyContent="end" mt="20px">
+          <Button type="submit" color="secondary" variant="contained">
+            Create New User
+          </Button>
         </Box>
       </form>
     </Box>
