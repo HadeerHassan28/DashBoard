@@ -156,6 +156,13 @@ const SideBar = () => {
               setselected={setselected}
             />
 
+            <Item
+              title="Invoice Balanves"
+              to="/invoice"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setselected={setselected}
+            />
             <Typography
               variant="h6"
               color={colors.gray[300]}
@@ -164,19 +171,13 @@ const SideBar = () => {
               Pages
             </Typography>
             <Item
-              title="Invoice Balanves"
-              to="/invoice"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setselected={setselected}
-            />
-            <Item
               title="Profile Form"
               to="/form"
               icon={<Person2OutlinedIcon />}
               selected={selected}
               setselected={setselected}
             />
+
             <Item
               title="Calender"
               to="/calender"
