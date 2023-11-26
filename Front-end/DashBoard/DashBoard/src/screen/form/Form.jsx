@@ -1,10 +1,19 @@
 import React from "react";
-import { Box, TextField, Button, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Button,
+  useMediaQuery,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Header from "../../component/Header";
 
 const Form = () => {
+  const [open, setOpen] = React.useState(false);
+
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const initialValues = {
@@ -36,10 +45,23 @@ const Form = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: userSchema,
-    onsubmit: (values) => {
+    onSubmit: (values) => {
       handleSubmit(values);
     },
   });
+  //For SnackBar
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <Box m="20px">
       <Header title="CREATE USER" subTitle="Create a New User Profile " />
@@ -139,9 +161,23 @@ const Form = () => {
         </Box>
         {/* Button */}
         <Box display="flex" justifyContent="end" mt="20px">
-          <Button type="submit" color="secondary" variant="contained">
+          <Button
+            type="submit"
+            color="secondary"
+            variant="contained"
+            onClick={handleClick}
+          >
             Create New User
           </Button>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
+              The Profile is created
+            </Alert>
+          </Snackbar>
         </Box>
       </form>
     </Box>
