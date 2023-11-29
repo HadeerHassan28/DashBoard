@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import FullCalender, { formatDate } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
+import { formatDate } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import listGrid from "@fullcalendar/list";
+import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import {
   Box,
@@ -22,7 +23,7 @@ const Calender = () => {
   const handleDateClick = (selected) => {
     const title = prompt("please Enter a new title for your event");
     const calendarApi = selected.view.calendar;
-    calendarApi.unselected();
+    // calendarApi.unselected();
 
     if (title) {
       calendarApi.addEvent({
@@ -67,11 +68,48 @@ const Calender = () => {
               >
                 <ListItemText
                   primary={event.title}
-                  secondary={<Typography>{formatDate(event.start)}</Typography>}
+                  secondary={
+                    <Typography>
+                      {formatDate(event.start, {
+                        yeaer: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </Typography>
+                  }
                 ></ListItemText>
               </ListItem>
             ))}
           </List>
+        </Box>
+        {/* Calendar */}
+        <Box flex="1 1 100%" ml="15px">
+          <FullCalendar
+            height="75vh"
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
+            headerToolbar={{
+              left: "prev next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek, timeGridDay,listMonth",
+            }}
+            initialView="dayGridMonth"
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            select={handleDateClick}
+            eventClick={handleEventClick}
+            eventsSet={(events) => setcurrentEvents(events)}
+            initialEvents={[
+              { id: "1234", title: "All-Day Events", date: "2023-11-25" },
+              { id: "5678", title: "Timed event", date: "2023-11-30" },
+            ]}
+          />
         </Box>
       </Box>
     </Box>
