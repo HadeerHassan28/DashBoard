@@ -1,7 +1,16 @@
 import React from "react";
-
+import { Box } from "@mui/material";
+import Header from "../../component/Header";
+import BarChart from "../../component/BarCharts";
 const Bar = () => {
-  return <div></div>;
+  return (
+    <Box m="20px">
+      <Header title="Bar Chart" subTitle="Simple Bar Chart" />
+      <Box height="75vh">
+        <BarChart />
+      </Box>
+    </Box>
+  );
 };
 
 export default Bar;
