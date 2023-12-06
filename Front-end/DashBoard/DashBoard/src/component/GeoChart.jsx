@@ -49,35 +49,31 @@ const GeoChart = ({ isDashboard = false }) => {
       projectionRotation={[0, 0, 0]}
       borderWidth={1.5}
       borderColor="#ffffff"
-      legends={
-        !isDashboard
-          ? [
-              {
-                anchor: "bottom-left",
-                direction: "column",
-                justify: true,
-                translateX: 20,
-                translateY: -100,
-                itemsSpacing: 0,
-                itemWidth: 94,
-                itemHeight: 18,
-                itemDirection: "left-to-right",
-                itemTextColor: colors.gray[100],
-                itemOpacity: 0.85,
-                symbolSize: 18,
-                effects: [
-                  {
-                    on: "hover",
-                    style: {
-                      itemTextColor: "#ffffff",
-                      itemOpacity: 1,
-                    },
-                  },
-                ],
-              },
-            ]
-          : undefined
-      }
+      // legends={[
+      //   {
+      //     anchor: "bottom-left",
+      //     direction: "column",
+      //     justify: true,
+      //     translateX: 20,
+      //     translateY: -100,
+      //     itemsSpacing: 0,
+      //     itemWidth: 94,
+      //     itemHeight: 18,
+      //     itemDirection: "left-to-right",
+      //     itemTextColor: "#444444",
+      //     itemOpacity: 0.85,
+      //     symbolSize: 18,
+      //     effects: [
+      //       {
+      //         on: "hover",
+      //         style: {
+      //           itemTextColor: "#000000",
+      //           itemOpacity: 1,
+      //         },
+      //       },
+      //     ],
+      //   },
+      // ]}
     />
   );
 };

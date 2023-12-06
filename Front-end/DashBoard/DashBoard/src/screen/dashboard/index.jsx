@@ -66,21 +66,22 @@ const Dashboard = () => {
       {/* Header */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subTitle="Welcome to Your Dashboard" />
-      </Box>
-      {/* Button */}
-      <Box>
-        <Button
-          sx={{
-            background: colors.blueAccent[700],
-            color: colors.gray[100],
-            fontsize: "14px",
-            fontWeight: "bold",
-            padding: "10px 20px",
-          }}
-        >
-          <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-          Download Report
-        </Button>
+
+        {/* Button */}
+        <Box>
+          <Button
+            sx={{
+              background: colors.blueAccent[700],
+              color: colors.gray[100],
+              fontsize: "14px",
+              fontWeight: "bold",
+              padding: "10px 20px",
+            }}
+          >
+            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
+            Download Report
+          </Button>
+        </Box>
       </Box>
       {/* Grid and charts */}
       <Box
@@ -91,25 +92,183 @@ const Dashboard = () => {
       >
         {/* Row 1 */}
         {firstRow.map((ele, index) => (
-          <>
-            <Box
-              gridColumn="span 3"
-              backgroundColor={colors.primary[400]}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              key={index}
-            >
-              <StateBox
-                title={ele.title}
-                subTitle={ele.subTitle}
-                progress={ele.progress}
-                increase={ele.increase}
-                icon={ele.icon}
-              />
-            </Box>
-          </>
+          <Box
+            gridColumn={`span ${3}`}
+            backgroundColor={colors.primary[400]}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            key={index}
+          >
+            <StateBox
+              title={ele.title}
+              subTitle={ele.subTitle}
+              progress={ele.progress}
+              increase={ele.increase}
+              icon={ele.icon}
+            />
+          </Box>
         ))}
+
+        {/* Row 2 */}
+        <Box
+          gridColumn={`span ${8}`}
+          gridRow={`span ${2}`}
+          backgroundColor={colors.primary[400]}
+        >
+          <Box
+            mt="25px"
+            p="0 30px"
+            display="flex "
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            {/* Title of line chart */}
+            <Box>
+              <Typography
+                variant="h5"
+                fontWeight="600"
+                color={colors.gray[100]}
+              >
+                Revenue Generated
+              </Typography>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+              >
+                $59,342.32
+              </Typography>
+            </Box>
+            {/* Download button */}
+            <Box>
+              <IconButton>
+                <DownloadOutlinedIcon
+                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                />
+              </IconButton>
+            </Box>
+          </Box>
+          {/* Line Chart */}
+          <Box height="250px" mt="-20px">
+            <LineChart isDashboard={true} />
+          </Box>
+        </Box>
+        {/* Transcation */}
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          overflow="auto"
+        >
+          <Box
+            display="flex"
+            flexDirection="column"
+            borderBottom={`4px solid ${colors.primary[500]}`}
+            color={colors.gray[100]}
+            padding="15px"
+          >
+            <Typography color={colors.gray[100]} variant="h5" fontWeight="600">
+              Recent Transaction
+            </Typography>
+            {mockTransactions.map((ele, index) => (
+              <Box
+                key={`${ele.txId} - ${index}`}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                borderBottom={`4px solid ${colors.primary[500]}`}
+                padding="15px"
+              >
+                {/* ID and user */}
+                <Box>
+                  {/* ID */}{" "}
+                  <Typography
+                    color={colors.greenAccent[500]}
+                    variant="h5"
+                    fontWeight="600"
+                  >
+                    {ele.txId}
+                  </Typography>
+                  {/* user */}
+                  <Typography color={colors.gray[100]}>{ele.user}</Typography>
+                </Box>
+                {/* date */}
+                <Box color={colors.gray[100]}>{ele.date}</Box>
+                {/* cost */}
+                <Box
+                  backgroundColor={colors.greenAccent[500]}
+                  padding="5px 10px"
+                  borderRadius="4px"
+                >
+                  {ele.cost}
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+        {/* Row 3 */}
+        {/* 1st ele */}
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          padding="30px"
+        >
+          {/* title */}
+          <Typography variant="h5" fontWeight="600">
+            Compaign
+          </Typography>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="25px"
+          >
+            <ProgressCircul size="125" />
+            <Typography
+              variant="h5"
+              color={colors.greenAccent[500]}
+              sx={{ mt: "15px" }}
+            >
+              $48,352 Revnue Generated
+            </Typography>
+            <Typography>Include extra misc expenditures and costs</Typography>
+          </Box>
+        </Box>
+        {/* 2nd ele */}
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+        >
+          {/* title */}
+          <Typography
+            variant="h5"
+            fontWeight="600"
+            sx={{ p: "30px 30px 0 30px" }}
+          >
+            Sales Quantity
+          </Typography>
+          <Box height="250px" mt="-20px">
+            <BarChart isDashboard={true} />
+          </Box>
+        </Box>
+        {/* 3rd ele */}
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          padding="30px"
+        >
+          {/* title */}
+          <Typography variant="h5" fontWeight="600" sx={{ mb: "15px" }}>
+            Geography Based Traffic
+          </Typography>
+          <Box height="200px">
+            <GeoChart isDashboard={true} />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
